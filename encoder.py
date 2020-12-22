@@ -1,3 +1,5 @@
+# this script encodes an html file in place
+
 import sys
 
 if __name__ == "__main__":
@@ -33,7 +35,7 @@ if __name__ == "__main__":
                 r = html[line].replace("}", "<bl>}</bl>")
                 _of.write(r)
             else:
-
+                
                 _of.write("<css>" + r[:-1] + "</css>\n")
             continue
 

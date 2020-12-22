@@ -1,0 +1,67 @@
+* {
+	font-family: Courier;
+	font-weight: 900;
+	background-color: #333;
+}
+
+img {
+	height: 70vh;
+	object-fit: scale-down;
+	margin-left:auto;
+	margin-right:auto;
+	display: block;
+	border-style: solid;
+}
+
+pre {
+	padding: 10px;
+	padding-left: 40px;
+	overflow: hide;
+	direction:ltr;
+	border-radius: 16px;
+	border-top-left-radius: 32px;
+	tab-size: 4;
+	-moz-tab-size: 4;
+	margin: 10px;
+}
+
+pre.html {
+	background-color: #375;
+	color: #000;
+}
+
+pre.notes {
+	background-color: #357;
+	color: white;
+}
+
+pre.css {
+	background-color: #366;
+	color: #eee;	
+}
+
+y {
+	background-color: inherit;
+	color: yellow;
+}
+
+bl {
+	background-color: inherit;
+	color: #3ff;
+}
+
+css {
+	background-color: inherit;
+	color: white;
+}
+
+css_comm {
+	background-color: inherit;
+	color: #f64;;
+}
+
+html_comm {
+	background-color: inherit;
+	color: #242;
+}
+

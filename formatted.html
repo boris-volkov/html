@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>html demos</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+		<img src="image.png">		
+			
+<pre class=notes>
+Here is an example of a page layout using css and html. 
+The html is in the green box, the css is in the teal box.
+
+The way the code is written now assumes that you have 
+the following three files in your directory:
+	page.html  		<- containing the html text
+	style.css  		<- containing the css text
+	picture.jpg		<- being some picture
+
+These names are not required, but whatever name you choose
+has to match what you write in the html.
+
+This layout is just here for you to practice getting a 
+page working. Play around with the numbers, change the colors,
+change the borders/padding/margins to how you like it.
+Make it your own!
+</pre>
+<pre class=html>
+<y>&lt!DOCTYPE html&gt</y>
+
+<y>&lthtml&gt</y>
+	<y>&lthead&gt</y>
+		<y>&lttitle&gt</y>soccer<y>&lt/title&gt</y>
+		<html_comm>&lt!-- the next line points to the css file that controls the style --&gt</html_comm>
+		<html_comm>&lt!-- it can be in the same directory together with your html --&gt</html_comm>
+		<y>&ltlink rel="stylesheet" href="style.css"&gt</y><y>&lt/link&gt</y>
+	<y>&lt/head&gt</y>
+
+	<y>&ltbody&gt</y>
+		<y>&ltdiv class="outer"&gt</y>
+			<y>&ltimg src="picture.jpg"&gt</y><y>&lt/img&gt</y>
+			<y>&ltdiv class="inner"&gt</y>
+				soccer is about kicking.
+			<y>&lt/div&gt</y>
+		<y>&lt/div&gt</y>
+
+	<y>&lt/body&gt</y>
+
+<y>&lt/html&gt</y>
+</pre>
+<pre class=css>
+<bl>body {</bl>
+<css>	background-color: rgb(40,95,70);</css>
+<bl>}</bl>
+<css></css>
+<bl>img {</bl>
+<css>	width : 600px;</css>
+<css>	height : 600px;</css>
+<css>	margin: 20px;</css>
+<css>	padding : 20px;</css>
+<css>	object-fit: cover; 		<css_comm>/* to crop into image */</css_comm></css>
+<css>	border-radius: 50%; </css>
+<css>	float: left;			<css_comm>/* so text can go around it */</css_comm></css>
+<css>	border-style:solid;</css>
+<bl>}</bl>
+<css></css>
+<bl>div.outer {</bl> 				<css_comm>/* selects all divs with class="outer" */</css_comm>
+<css>	margin: auto;</css>
+<css>	background-color: rgb(20,30,60);</css>
+<css>	color: white;</css>
+<css>	border-style:solid;</css>
+<css>	margin: 20px;</css>
+<css>	overflow: auto; 		<css_comm>/* needed when all internal elements are float */</css_comm></css>
+<css>	display: flex;  		<css_comm>/* to vertically center internal divs */</css_comm></css>
+<css>	align-items: center; 	<css_comm>/* vertical centering */</css_comm></css>
+<bl>}</bl>
+<css></css>
+<bl>div.inner {</bl>
+<css>	margin: 20px;</css>
+<css>	padding: 20px;</css>
+<css>	background-color: rgb(40,70,200);</css>
+<css>	border-style:solid;</css>
+<css>	color:    white;</css>
+<css>	font-size: 72px;</css>
+<css>	float: left;</css>
+<bl>}</bl>
+<css></css>
+</pre>
+
+</body>
+</html>
