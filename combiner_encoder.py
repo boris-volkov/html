@@ -3,10 +3,10 @@ import sys
 if __name__ == "__main__":
 
     _of     = open("formatted.html", "w+")
-    _if     = open("inner.html")
+    _if     = open("./inner_page/page.html")
     _tp     = open("template.html")
-    _nt     = open("notes.txt")
-    _st     = open("inner_style.css")
+    _nt     = open("./inner_page/notes.txt")
+    _st     = open("./inner_page/style.css")
 
     template    = _tp.readlines()
     inner       = _if.readlines()
