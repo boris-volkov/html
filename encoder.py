@@ -2,14 +2,16 @@ import sys
 
 if __name__ == "__main__":
 
-    of   = open("final.html", "w+")
-    html = open(sys.argv[1]).readlines()
+    _of   = open("final.html", "w+")
+    _if = open(sys.argv[1])
+    
+    html = _if.readlines()
 
     stylin = 0
     line = -1
     while 1:
         line += 1
-        of.write(html[line])
+        _of.write(html[line])
         if "<pre>" in html[line]:
             break
     
@@ -26,12 +28,13 @@ if __name__ == "__main__":
             if "{" in html[line]:
                 r = '<bl>'
                 r = r + html[line].replace("{", "{</bl>")
-                of.write(r)
+                _of.write(r)
             elif "}" in html[line]:
                 r = html[line].replace("}", "<bl>}</bl>")
-                of.write(r)
+                _of.write(r)
             else:
-                of.write("<css>" + r + "</css>")
+
+                _of.write("<css>" + r[:-1] + "</css>\n")
             continue
 
         if "<style>" in html[line]:
@@ -40,11 +43,12 @@ if __name__ == "__main__":
         r = html[line].replace("<", "<y*^+&lt")
         r = r.replace(">","&gt</y>")
         r = r.replace("*^+", ">")
-        of.write(r)
+        _of.write(r)
 
     while line < len(html):
-        of.write(html[line])
+        _of.write(html[line])
         line += 1
 
-
+    _if.close()
+    _of.close()
         
