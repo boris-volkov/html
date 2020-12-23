@@ -1,10 +1,9 @@
-Here is an example of a page layout using css and html. 
-The html is in the green box, the css is in the teal box.
+Here is an example of a page layout using css and html.
 
 The way the code is written now assumes that you have 
 the following three files in your directory:
-	page.html  		<- containing the html text
-	style.css  		<- containing the css text
+	page.html  		<- containing the html text below
+	style.css  		<- containing the css text below(er)
 	picture.jpg		<- being some picture
 
 These names are not required, but whatever name you choose

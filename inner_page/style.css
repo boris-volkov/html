@@ -35,7 +35,7 @@ div.outer { 				/* selects only divs with class="outer" */
 div.inner {					/* selects only divs with class'"inner" */
 	padding : 20px;
 	background-color : rgb(40,70,200);
-	font-size : 72px;
+	font-size : 24px;
 	float : left;
 }
 
