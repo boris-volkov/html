@@ -1,0 +1,468 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>html demos</title>
+<link href="../style.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+	<div class="image">
+	<a href = https://boris-volkov.github.io/games/princess/rules.html><img class="screenshot" src="screenshot.png"></a>	
+	</div>
+			
+<div class="bookmark">./princess/readme.txt</div><pre class=notes>
+This puzzle is taken from one of Raymond Smullyan's books,
+You learn a number game, and try to complete some tests.
+
+Try it out!
+</pre>
+<div class="bookmark">./princess/princess.html</div><pre class=html>
+<y>&lt!DOCTYPE html&gt</y>
+<y>&lthtml&gt</y>
+  <y>&lthead&gt</y>
+  <y>&ltmeta charset="utf-8"&gt</y>
+  <y>&ltmeta http-equiv="X-UA-Compatible" content="IE=edge"&gt</y>
+  <y>&ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt</y>
+  
+  
+  <y>&ltlink rel="stylesheet" href="../xterm/css/xterm.css" /&gt</y>
+  <y>&ltscript src="../xterm/lib/xterm.js"&gt</y><y>&lt/script&gt</y>
+
+  <y>&lttitle&gt</y>The Princess Test<y>&lt/title&gt</y>
+<y>&ltstyle&gt</y>
+body { background-color: #006699; }
+<y>&lt/style&gt</y>
+<y>&lt/head&gt</y>
+
+
+  <y>&ltbody&gt</y>
+   <y>&ltmain&gt</y>
+      <y>&ltdiv id="terminal" style="border-style: inset;"&gt</y><y>&lt/div&gt</y>
+      <y>&ltscript src="princess.js"&gt</y><y>&lt/script&gt</y>
+     <y>&lt/div&gt</y>
+    <y>&lt/main&gt</y>
+  <y>&lt/body&gt</y>
+<y>&lt/html&gt</y>
+</pre>
+<div class="bookmark">./princess/rules.html</div><pre class=html>
+<y>&lt!DOCTYPE html&gt</y>
+<y>&lthtml&gt</y>
+  <y>&lthead&gt</y>
+  <y>&ltmeta charset="utf-8"&gt</y>
+  <y>&ltmeta http-equiv="X-UA-Compatible" content="IE=edge"&gt</y>
+  <y>&ltmeta name="viewport" content="width=device-width, initial-scale=1"&gt</y>
+  
+  
+  <y>&ltlink rel="stylesheet" href="../xterm/css/xterm.css" /&gt</y>
+  <y>&ltscript src="../xterm/lib/xterm.js"&gt</y><y>&lt/script&gt</y>
+
+  <y>&lttitle&gt</y>The Princess Test<y>&lt/title&gt</y>
+<y>&ltstyle&gt</y>
+body { background-color: #006699; }
+<y>&lt/style&gt</y>
+<y>&lt/head&gt</y>
+
+
+  <y>&ltbody&gt</y>
+   <y>&ltmain&gt</y>
+      <y>&ltdiv id="terminal" style="border-style: inset;"&gt</y><y>&lt/div&gt</y>
+      <y>&ltscript src="rules.js"&gt</y><y>&lt/script&gt</y>
+     <y>&lt/div&gt</y>
+    <y>&lt/main&gt</y>
+  <y>&lt/body&gt</y>
+<y>&lt/html&gt</y>
+</pre>
+<div class="bookmark">./princess/princess.js</div><pre class=js>
+//prompt<db>(</db>"got here"<db>)</db><db>;</db> // <y>this</y> is just a debugging thing, put <y>this</y> somewhere as a breakpoint
+
+
+<y>const</y> desired_rows = 15<db>;</db>
+
+<y>const</y> white = '\x1b<db>[</db>97m'<db>;</db>
+<y>const</y> yellow = '\x1b<db>[</db>93m'<db>;</db>
+<y>const</y> blue = '\x1b<db>[</db>94m'<db>;</db>
+<y>const</y> red = '\x1b<db>[</db>91m'<db>;</db>
+<y>const</y> green = '\x1b<db>[</db>92m'<db>;</db>
+
+<y>function</y> princess<db>(</db>input<db>)</db><db>{</db>
+	<y>let</y> head = input.charAt<db>(</db>0<db>)</db><db>;</db>
+	<y>let</y> tail = input.charAt<db>(</db>input.length - 1<db>)</db><db>;</db>
+	<y>let</y> rest = input.substring<db>(</db>1<db>)</db><db>;</db>
+
+	<y>if</y> <db>(</db>head == "1" && tail == "2"<db>)</db>
+		<y>return</y> input.substring<db>(</db>1,input.length - 1<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "3"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db> + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "4"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db>.split<db>(</db>""<db>)</db>.reverse<db>(</db><db>)</db>.join<db>(</db>""<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "5"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db>.substring<db>(</db>1<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "6"<db>)</db>
+		<y>return</y> "1" + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "7"<db>)</db>
+		<y>return</y> "2" + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y>
+		<y>return</y> ""<db>;</db>
+<db>}</db>
+
+<y>function</y> test1<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>input<db>)</db> == input<db>)</db><db>;</db><db>}</db>
+<y>function</y> test2<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>input<db>)</db> == input + input<db>)</db><db>;</db><db>}</db>
+<y>function</y> test3<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>input<db>)</db> == input.split<db>(</db>""<db>)</db>.reverse<db>(</db><db>)</db>.join<db>(</db>""<db>)</db><db>)</db><db>;</db><db>}</db>
+<y>function</y> test4<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>input<db>)</db> == input.substring<db>(</db>0,input.length-1<db>)</db><db>)</db><db>;</db><db>}</db>
+<y>function</y> test5<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>princess<db>(</db>input<db>)</db><db>)</db> == input<db>)</db><db>;</db><db>}</db>
+<y>function</y> test6<db>(</db>input<db>)</db><db>{</db><y>return</y> <db>(</db>princess<db>(</db>princess<db>(</db>input<db>)</db><db>)</db> ==  input.split<db>(</db>""<db>)</db>.reverse<db>(</db><db>)</db>.join<db>(</db>""<db>)</db><db>)</db><db>;</db><db>}</db>
+
+
+<y>const</y> reminder ="\n\rRule I                        "+green+"1"+white+"a"+green+"2"+white+" → a\n\r"+
+	"Rule II        <y>if</y> a → b, then "+green+"3"+white+"a → bb\n\r"+
+	"Rule III       <y>if</y> a → b, then "+green+"4"+white+"a → b↩\n\r"+
+	"Rule IV        <y>if</y> a → b, then "+green+"5"+white+"a → ◌b\n\r"+
+	"Rule V         <y>if</y> a → b, then "+green+"6"+white+"a → 1b\n\r"+
+	"Rule VI        <y>if</y> a → b, then "+green+"7"+white+"a → 2b\n\n\r"
+
+
+//TODO make these more engaging
+<y>var</y> prompts = 
+	<db>[</db>
+		yellow + "The first test: Echo\n\r"+
+		"Get the princess to echo your number.\n\r"+ blue + 
+		"	x → x\n\n\r" + white,
+
+		yellow + "The second test:\n\r"+ blue + 
+		"	x → xx\n\n\r" + white,
+
+		yellow + "the third test:\n\r"+ blue + 
+		"	x → x↩\n\n\r" + white,
+
+		yellow + "the fourth test:\n\r"+ blue + 
+		"	x → x◌ <db>(</db>final digit removed<db>)</db>\n\n\r",
+
+		yellow + "the fifth test:\n\r"+ blue + 
+		"	x → y → x\n\n\r",
+
+		yellow + "the sixth test:\n\r"+ blue + 
+		"	x → y → x↩'.\n\n\r"
+	<db>]</db>
+
+<y>var</y> tests = <db>[</db>test1, test2, test3, test4, test5, test6<db>]</db><db>;</db>
+        <y>const</y> term = <y>new</y> Terminal<db>(</db>
+                        <db>{</db>
+                                theme: <db>{</db>
+                                        background: "#882255",
+                                <db>}</db>,
+                                rows: desired_rows,
+                                cols: 60,
+                                cursorBlink: true,
+                                fontSize: Math.floor<db>(</db>innerHeight/<db>(</db>desired_rows*5/4<db>)</db><db>)</db>,
+                                fontWeight: 900
+                        <db>}</db><db>)</db><db>;</db>
+
+	term.open<db>(</db>document.getElementById<db>(</db>'terminal'<db>)</db><db>)</db><db>;</db>
+	<y>const</y> princess_prompt = '\r\nSend her a number...  '<db>;</db>
+
+	<y>function</y> runFakeTerminal<db>(</db><db>)</db> <db>{</db>
+		<y>var</y> i = 0<db>;</db>
+
+		term.write<db>(</db>'\x1b<db>[</db>97m'<db>)</db><db>;</db>
+		term.writeln<db>(</db>prompts<db>[</db>i<db>]</db><db>)</db><db>;</db>
+		prompt<db>(</db>term<db>)</db><db>;</db>
+
+		<y>var</y> buffer = ""<db>;</db>
+
+		term.onKey<db>(</db>e => <db>{</db>
+			<y>const</y> printable = !e.domEvent.altKey && !e.domEvent.altGraphKey && !e.domEvent.ctrlKey && !e.domEvent.metaKey<db>;</db>
+			
+			<y>if</y> <db>(</db><db>[</db>37,39,38,40<db>]</db>.includes<db>(</db>e.domEvent.keyCode<db>)</db><db>)</db> <y>return</y><db>;</db> // disable arrow keys <y>for</y> now they're buggy 
+
+			<y>if</y> <db>(</db>e.domEvent.keyCode === 13<db>)</db> <db>{</db>
+				<y>if</y> <db>(</db>buffer == ""<db>)</db> <y>return</y><db>;</db>
+				<y>if</y> <db>(</db>buffer == "?"<db>)</db><db>{</db>
+					term.write<db>(</db>reminder<db>)</db><db>;</db>
+					prompt<db>(</db>term<db>)</db><db>;</db>
+					buffer = ""<db>;</db>
+					<y>return</y>
+				<db>}</db>
+				term.write<db>(</db>"\r\n\x1b<db>[</db>94m" +  "The princess returns: " + princess<db>(</db>buffer<db>)</db> + "\x1b<db>[</db>97m"<db>)</db><db>;</db>
+				<y>if</y> <db>(</db>tests<db>[</db>i<db>]</db><db>(</db>buffer<db>)</db><db>)</db><db>{</db>
+					i++<db>;</db>
+					term.write<db>(</db>"\x1b<db>[</db>91m\r\nYou passed Test " + i + "!\x1b<db>[</db>97m\r\n\n"<db>)</db><db>;</db>
+					term.write<db>(</db>prompts<db>[</db>i<db>]</db><db>)</db><db>;</db>
+				<db>}</db>
+				buffer = ""<db>;</db>
+				prompt<db>(</db>term<db>)</db><db>;</db>
+			<db>}</db> <y>else</y> <y>if</y> <db>(</db>e.domEvent.keyCode === 8<db>)</db> <db>{</db>
+				// Do not <y>delete</y> the prompt
+				<y>if</y> <db>(</db>term._core.buffer.x > princess_prompt.length - 2<db>)</db> <db>{</db>
+					buffer = buffer.substring<db>(</db>0, buffer.length - 1<db>)</db><db>;</db>
+					term.write<db>(</db>'\b \b'<db>)</db><db>;</db>
+				<db>}</db>
+			<db>}</db> <y>else</y> <y>if</y> <db>(</db>printable<db>)</db> <db>{</db>
+				buffer = buffer + e.key<db>;</db>
+				term.write<db>(</db>e.key<db>)</db><db>;</db>
+			<db>}</db>
+		<db>}</db><db>)</db><db>;</db>
+	<db>}</db>
+
+	        window.addEventListener<db>(</db>"resize", resize_term<db>)</db><db>;</db>
+                <y>function</y> resize_term<db>(</db><db>)</db><db>{</db>
+                        <y>let</y> font_height = Math.floor<db>(</db>innerHeight/<db>(</db>desired_rows*5/4<db>)</db><db>)</db><db>;</db>
+                        term.setOption<db>(</db>"fontSize", font_height<db>)</db><db>;</db>
+                <db>}</db>
+
+
+	<y>function</y> prompt<db>(</db>term<db>)</db> <db>{</db>
+		term.write<db>(</db>princess_prompt<db>)</db><db>;</db>
+	<db>}</db>
+
+	runFakeTerminal<db>(</db><db>)</db><db>;</db>
+</pre>
+<div class="bookmark">./princess/rules.js</div><pre class=js>
+/**
+ * Test user on rules one at a time. 
+ * Assert a set of pre-determined output values
+ * Make sure uesr know how to use all of the rules
+ */
+
+<y>const</y> desired_rows = 24
+
+<y>function</y> princess<db>(</db>input<db>)</db><db>{</db>
+	<y>var</y> head = input.charAt<db>(</db>0<db>)</db><db>;</db>
+	<y>var</y> tail = input.charAt<db>(</db>input.length - 1<db>)</db><db>;</db>
+	<y>var</y> rest = input.substring<db>(</db>1<db>)</db><db>;</db>
+
+	<y>if</y> <db>(</db>head == "1" && tail == "2"<db>)</db>
+		<y>return</y> input.substring<db>(</db>1,input.length - 1<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "3"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db> + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "4"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db>.split<db>(</db>""<db>)</db>.reverse<db>(</db><db>)</db>.join<db>(</db>""<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "5"<db>)</db>
+		<y>return</y> princess<db>(</db>rest<db>)</db>.substring<db>(</db>1<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "6"<db>)</db>
+		<y>return</y> "1" + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y> <y>if</y> <db>(</db>head == "7"<db>)</db>
+		<y>return</y> "2" + princess<db>(</db>rest<db>)</db><db>;</db>
+	<y>else</y>
+		<y>return</y> ""<db>;</db>
+<db>}</db>
+
+<y>const</y> white = '\x1b<db>[</db>97m'<db>;</db>
+<y>const</y> yellow = '\x1b<db>[</db>93m'<db>;</db>
+<y>const</y> blue = '\x1b<db>[</db>94m'<db>;</db>
+<y>const</y> red = '\x1b<db>[</db>91m'<db>;</db>
+<y>const</y> green = '\x1b<db>[</db>92m'<db>;</db>
+
+<y>const</y> INTRODUCTION = yellow + "There is a princess who lives far away,\n\r" + 
+	"She has a way <y>with</y> numbers, by the way.\n\r" + 
+	"She has <y>this</y> game she plays, a number game:\n\r"+
+	"You send her a number, she'll <y>do</y> the same.\n\r"+
+	"Her number will be <y>in</y> response to yours,\n\r"+
+	"And yes, She'll teach you how it works, of course.\n\r"+
+	"She will reward the one that meets her test,\n\r"+
+	"Just learn six rules and figure out the rest.\n\r"+
+	"The princess is waiting...\n\r"+ 
+	"First she will teach you the rules.\n\n\r"+
+	"<db>(</db>Already know the rules? press ESC<db>)</db>\n\n\r"+
+	green + "Tell the princess you are ready:"
+
+<y>const</y> rules = 
+	<db>[</db>
+		yellow + "Rule 0: notation\n\r"+ white + 
+		"▸ A single letter can be used to represent\n\r"+
+		"	either a single-digit, or a multi-digit number.\n\r"+
+		"	So x can be 2 or it can be 1234\n\r"+
+		"▸ No letter has any special meaning,\n\r"+
+		"	they are all just variables <db>(</db>a,b,x<db>)</db>\n\r"+
+		"▸ When you see variables next to each other,\n\r"+
+		"	it means concatenation, not multiplication\n\r"+
+		"	so <y>if</y> a = 543 and b = 987 ab means 543987\n\r"+
+		"	and 3a means 3543\n\r"+
+		"▸ a → b means: when you send the princess a,\n\r"+
+		"	       she will respond <y>with</y> b.\n\n\r"+
+		yellow + "Rule I: getting a response\n\r"+ white + 	
+		"		<db>(</db>"+green+"1"+white+"a"+green+"2"+white+" → a<db>)</db>\n\r" + 
+		"Examples: 	"+green+"1"+white+"654"+green+"2"+white+" → 654\n\r"+
+		"		"+green+"1"+white+"192"+green+"2"+white+" → 192\n\r"+
+		"Play <y>with</y> the rule. Does it make sense?\n\r"+
+		"What number would you send to get 1643 back\n\r"+
+		"<y>in</y> the notation: F<y>in</y>d an x such that: x → 1643\n\n\r",
+
+		yellow + "RULE II: doubling\n\r"+ 
+		"<db>(</db><y>if</y> a → b then 3a → bb<db>)</db>\n\r"+ white +
+		"Examples:      Since 116432 → 1643\n\r"+
+		"	       then "+green+"3"+white+"116432 → 16431643\n\r"+
+		"		Since 1432 → 43\n\r"+
+		"		then "+green+"3"+white+"1432 → 4343\n\r"+
+		"                and "+green+"33"+white+"1432 → 43434343\n\r"+
+		"Using rule II:\n\r"+
+		"What number would you send to get 123123 back?\n\r"+
+		"                   x → 123123\n\n\n\r",
+
+		yellow + "RULE III: reversal\n\r"+ 
+		"<db>(</db><y>if</y> a → b, then 4a → b↩ <db>(</db>b <y>with</y> its digits reversed<db>)</db><db>)</db>\n\r"+ white +
+		"Example:      since 19872 → 987\n\r"+
+		"	      then "+green+"4"+white+"19872 → 789\n\r"+
+		"Use rule III to make her send back 123\n\r",
+
+		yellow + "Rule IV: ereasure\n\r"+
+		"<db>(</db><y>if</y> a → b, then 5a→ ◌b <db>(</db>b <y>with</y> the first digit removed<db>)</db><db>)</db>\n\r"+ white +
+		"Example:     since  127432 → 2743\n\r"+
+		"	     then  "+green+"5"+white+"127432 → 743\n\r"+
+		"Use rule IV to make her send back 375\n\r",
+
+		yellow + "Rule V: addition<db>(</db>1<db>)</db> <db>(</db><y>if</y> a → b then 6a → 1b<db>)</db>\n\r"+ white + 
+		"Example:      since 15552 → 555\n\r"+
+		"              then "+green+"6"+white+"15552 → 1555\n\r"+
+		"Use rule V to <y>return</y> 1919\n\r",
+
+		yellow + "Rule VI: addition<db>(</db>2<db>)</db> <db>(</db><y>if</y> a → b then 7a → 2b<db>)</db>\n\r"+ white +
+		"Example:      since 13432 → 343\n\r"+
+		"              then "+green+"7"+white+"13432 → 2343\n\r"+
+		"Use rule VI to <y>return</y> 222\n\r",
+
+		yellow + "Rule ∞: rules can be used <y>in</y> any comb<y>in</y>ation\n\r"+ white +
+		"Example:      since   14342 →  434\n\r"+
+		"               and   "+green+"6"+white+"14342 → 1434       <db>(</db>addition<db>(</db>1<db>)</db><db>)</db>\n\r"+
+		"              then  "+green+"36"+white+"14342 → 14341434   <db>(</db>doubling<db>)</db>\n\r"+
+		"Use rules IV<db>(</db>ereasure<db>)</db> and II<db>(</db>doubling<db>)</db> to get the \n\r"+
+		"princess to send you the number 47747\n\r",
+
+		red + "And those are all the rules.\n\n\r" + white + 
+		"Do not forget them:\n\n\n\r"+
+		"Rule I                        "+green+"1"+white+"a"+green+"2"+white+" → a\n\r"+
+		"Rule II        <y>if</y> a → b, then "+green+"3"+white+"a → bb\n\r"+
+		"Rule III       <y>if</y> a → b, then "+green+"4"+white+"a → b↩\n\r"+
+		"Rule IV        <y>if</y> a → b, then "+green+"5"+white+"a → ◌b\n\r"+
+		"Rule V         <y>if</y> a → b, then "+green+"6"+white+"a → 1b\n\r"+
+		"Rule VI        <y>if</y> a → b, then "+green+"7"+white+"a → 2b\n\n\r"+
+		"Now you are ready <y>for</y> the tests ↴\n\r"+
+		"Send the princess a ? <y>if</y> you need a reminder...\n\r"+
+		"Press ENTER to go to the tests"
+	<db>]</db>
+
+// <y>this</y> is how we make sure they understand the rules
+<y>const</y> asserts = 
+	<db>[</db>    // <db>(</db>required number, test assert equal<db>)</db>   
+		<db>[</db>"1","1643"<db>]</db>,
+		<db>[</db>"3","123123"<db>]</db>,
+		<db>[</db>"4", "123"<db>]</db>,
+		<db>[</db>"5", "375"<db>]</db>,
+		<db>[</db>"6", "1919"<db>]</db>,
+		<db>[</db>"7", "222"<db>]</db>,
+		<db>[</db>"53", "47747"<db>]</db>
+	<db>]</db>
+
+/**
+ * pass it the buffer, and where to look <y>in</y> the asserts aray
+ */
+<y>function</y> test<db>(</db>input, i<db>)</db><db>{</db>
+	<y>return</y> <db>(</db><db>(</db>input.startsWith<db>(</db>asserts<db>[</db>i<db>]</db><db>[</db>0<db>]</db><db>)</db><db>)</db> && <db>(</db>princess<db>(</db>input<db>)</db> == asserts<db>[</db>i<db>]</db><db>[</db>1<db>]</db><db>)</db><db>)</db><db>;</db>
+<db>}</db>
+
+
+<y>const</y> term = <y>new</y> Terminal<db>(</db>
+	<db>{</db>
+		theme: <db>{</db>
+			background: "#006699",
+		<db>}</db>,
+		rows: desired_rows,
+		cols: 60,
+		cursorBlink: true,
+		fontSize: Math.floor<db>(</db>innerHeight/<db>(</db>desired_rows*5/4<db>)</db><db>)</db>,
+		fontWeight: 700,
+	<db>}</db><db>)</db><db>;</db>
+
+term.open<db>(</db>document.getElementById<db>(</db>'terminal'<db>)</db><db>)</db><db>;</db>
+
+<y>const</y> term_prompt = '\r\nTry a number: '<db>;</db>
+
+<y>function</y> runFakeTerminal<db>(</db><db>)</db> <db>{</db>
+	<y>if</y> <db>(</db>term._initialized<db>)</db> <db>{</db>
+		<y>return</y><db>;</db>
+	<db>}</db>
+
+	term._initialized = true<db>;</db>
+
+	term.write<db>(</db>'\x1b<db>[</db>97m'<db>)</db><db>;</db> // sets text color
+	term.write<db>(</db>INTRODUCTION<db>)</db><db>;</db>
+
+	<y>var</y> i = 0<db>;</db> 		// index to iterate through the rules
+	started = <y>false</y><db>;</db>
+
+	<y>var</y> buffer = ""<db>;</db> // initialize an empty buffer. I think <y>this</y> can be accessed 
+	// through term._core.buffer instead of building manually
+
+	term.onKey<db>(</db>e => <db>{</db>
+		<y>if</y> <db>(</db>e.domEvent.keyCode === 27<db>)</db><db>{</db>
+			term.dispose<db>(</db><db>)</db><db>;</db>
+			location.replace<db>(</db>"princess.html"<db>)</db><db>;</db> //<y>this</y> might be the fix: send to another html page <y>with</y> another terminal
+		<db>}</db>
+
+		<y>if</y> <db>(</db><db>[</db>37,39,38,40<db>]</db>.includes<db>(</db>e.domEvent.keyCode<db>)</db><db>)</db> <y>return</y><db>;</db> // disable arrow keys <y>for</y> now, they're buggy 
+
+		<y>const</y> printable = !e.domEvent.altKey && !e.domEvent.altGraphKey && !e.domEvent.ctrlKey && !e.domEvent.metaKey<db>;</db>
+
+		<y>if</y> <db>(</db>started == <y>false</y><db>)</db> <db>{</db> // started means they read the intro and are going through the rules now
+			term.reset<db>(</db><db>)</db><db>;</db>
+			buffer = ""<db>;</db>
+			term.writeln<db>(</db>rules<db>[</db>0<db>]</db><db>)</db><db>;</db>
+			prompt<db>(</db>term<db>)</db><db>;</db>
+			started = true<db>;</db>
+			<y>return</y><db>;</db>
+		<db>}</db>
+
+		<y>if</y> <db>(</db>e.domEvent.keyCode === 13<db>)</db> 
+		<db>{</db>
+			<y>if</y> <db>(</db>buffer == ""<db>)</db> <y>return</y><db>;</db> // don't <y>let</y> them send an empty string
+
+			<y>if</y> <db>(</db>i == rules.length-1<db>)</db><db>{</db>
+				term.dispose<db>(</db><db>)</db><db>;</db> //done learning rules.
+				location.replace<db>(</db>"princess.html"<db>)</db><db>;</db>
+			<db>}</db>
+
+			term.writeln<db>(</db>"\n\rthe princess would <y>return</y>: " + princess<db>(</db>buffer<db>)</db><db>)</db><db>;</db>
+			<y>if</y> <db>(</db>test<db>(</db>buffer, i<db>)</db><db>)</db><db>{</db>
+				i++<db>;</db>
+				term.writeln<db>(</db>green + "\n\n\n    Correct\n\n\n\n\r"<db>)</db><db>;</db>
+				term.writeln<db>(</db>rules<db>[</db>i<db>]</db><db>)</db><db>;</db>
+				<y>if</y> <db>(</db>i == rules.length - 1<db>)</db> <y>return</y><db>;</db> // so we don't prompt after the rules print out
+				// is it stupid to check <y>this</y> twice? probably.		
+			<db>}</db>
+
+			buffer = ""<db>;</db>
+			prompt<db>(</db>term<db>)</db><db>;</db>
+
+		<db>}</db> <y>else</y> <y>if</y> <db>(</db>e.domEvent.keyCode === 8<db>)</db> <db>{</db> // backspace
+			// Do not <y>delete</y> the prompt
+			<y>if</y> <db>(</db>term._core.buffer.x > term_prompt.length - 2<db>)</db> <db>{</db>
+				buffer = buffer.substring<db>(</db>0, buffer.length - 1<db>)</db><db>;</db>
+				term.write<db>(</db>'\b \b'<db>)</db><db>;</db>
+			<db>}</db>
+		<db>}</db> <y>else</y> <y>if</y> <db>(</db>printable<db>)</db> <db>{</db>
+			buffer = buffer + e.key<db>;</db>
+			term.write<db>(</db>e.key<db>)</db><db>;</db>
+		<db>}</db>
+
+	<db>}</db><db>)</db><db>;</db>
+
+	window.addEventListener<db>(</db>"resize", resize_term<db>)</db><db>;</db>
+	<y>function</y> resize_term<db>(</db><db>)</db><db>{</db>
+		<y>let</y> font_height = Math.floor<db>(</db>innerHeight/<db>(</db>desired_rows*5/4<db>)</db><db>)</db><db>;</db>
+		term.setOption<db>(</db>"fontSize", font_height<db>)</db><db>;</db>
+	<db>}</db>
+
+<db>}</db>
+
+<y>function</y> prompt<db>(</db>term<db>)</db> <db>{</db>
+	term.write<db>(</db>term_prompt<db>)</db><db>;</db>
+<db>}</db>
+
+runFakeTerminal<db>(</db><db>)</db><db>;</db>
+</pre>
+
+</body>
+</html>
