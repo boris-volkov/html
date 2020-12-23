@@ -7,7 +7,7 @@
 
 .top_menu {
 	position:sticky;
-	top :0;
+	top : 0;
 	width: 95vw;
 	list-style:none;
 	border-radius:10px;
@@ -22,7 +22,6 @@
 	float: left; 
 	width: 20%;
 	/*font-size: 18px;*/
-	line-height: 2.4em;
 }
 
 .top_menu li a {
@@ -67,7 +66,7 @@ div {
 div.bookmark {
 	text-align: center;
 	padding: 5px;
-	width: 20vw;
+	width: 36vw;
 	background-color : #345;
 	color: coral;
 	margin-bottom : 0;
@@ -177,6 +176,7 @@ jack {
 
 .image_box a {
 	background: #345;
+	max-width: 30%;
 	margin: 0;
 	padding: 0;
 }
@@ -188,7 +188,7 @@ jack {
 
 .image_box img {
 	border: 2px #345 solid;
-	max-width: 300px;
+	max-width: 100%;
 	flex-direction: row;
 	object-fit: cover;
 	padding:0;
