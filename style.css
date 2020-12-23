@@ -10,20 +10,24 @@ img {
 	margin-left:auto;
 	margin-right:auto;
 	display: block;
-	border-style: solid;
-	border-width: 20px;
 }
 
-pre {
+
+
+div, pre {
 	padding: 10px;
 	padding-left: 40px;
 	overflow: hide;
 	direction:ltr;
 	border-radius: 16px;
-	border-top-left-radius: 32px;
+	border-top-left-radius: 40px;
 	tab-size: 4;
 	-moz-tab-size: 4;
 	margin: 10px;
+}
+
+div.image {
+	background-color: #011;
 }
 
 pre.html {
