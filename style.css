@@ -71,7 +71,7 @@ div, pre {
 
 pre, a {
 	white-space: pre-wrap;  /* to wrap text */
-	/*word-break: keep-all;*/	/* so words don't get broken in wrap */
+	word-break: break-all;	/* so words don't get broken in wrap */
 }
 
 div {
