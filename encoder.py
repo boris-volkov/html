@@ -1,7 +1,4 @@
-# TODO correct the bahavior of the regular expressions stuff
-# if it finds a keyword in a line, it marks all instances
-# of that keyword, including ones nested in other words. 
-# need to figure out how to focus on only the isolated keywords.
+# TODO quote searching breaks on empty quotes ''
 
 import sys, os.path, re
 
@@ -189,7 +186,7 @@ if __name__ == "__main__":
                     temp[j] = '<comment Class="py">#'
                     temp.append('</comment>')
                     break
-                if temp[j] == '"':
+                if temp[j] == '"' and sgl_quote == 0:
                     if dbl_quote == 0:
                         temp.insert(j, '<dbl_quote>')
                         dbl_quote = 1
@@ -197,14 +194,16 @@ if __name__ == "__main__":
                         temp.insert(j + 1, '</dbl_quote>')
                         dbl_quote = 0
                     j += 2
+                    continue
                 elif temp[j] == "'":
-                    if sgl_quote ==0:
+                    if sgl_quote == 0 and dbl_quote == 0:
                         temp.insert(j, '<sgl_quote>')
                         sgl_quote = 1
                     else:
                         temp.insert(j + 1, '</sgl_quote>')
                         sgl_quote = 0
                     j += 2
+                    continue
                 j += 1
             line = ''.join(temp)
             _of.write(line)
