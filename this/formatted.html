@@ -14,6 +14,10 @@
 		<img class="screenshot" src="screenshot.png">		
 	</div>
 			
+<div class="bookmark">./this/readme.txt</div><pre class=notes>
+here is the code for the page you are currently on.
+the python script at the bottom is used to make other code look neat on this page. 
+</pre>
 <div class="bookmark">./this/front_page.html</div><pre class=html>
 <kw>&lt!DOCTYPE html&gt</kw>
 <kw>&lthtml lang="en"&gt</kw>
@@ -45,11 +49,11 @@
 			<kw>&lt/a&gt</kw>
 			<kw>&lta href="#"/&gt</kw>
 					<kw>&ltimg src="test.png"&gt</kw>
-					<kw>&ltp&gt</kw>under_construction<kw>&lt/p&gt</kw>
+					<kw>&ltp&gt</kw>hi<kw>&lt/p&gt</kw>
 			<kw>&lt/a&gt</kw>
-			<kw>&lta href="#"/&gt</kw>
-					<kw>&ltimg src="test1.png"&gt</kw>
-					<kw>&ltp&gt</kw>under_construction<kw>&lt/p&gt</kw>
+			<kw>&lta href="./this/formatted.html"/&gt</kw>
+					<kw>&ltimg src="./this/screenshot.png"&gt</kw>
+					<kw>&ltp&gt</kw>this<kw>&lt/p&gt</kw>
 			<kw>&lt/a&gt</kw>
 		<kw>&lt/div&gt</kw>
 
@@ -409,49 +413,49 @@ WRITE_HERE
 <div class="bookmark">./this/encoder.py</div><pre class=py>
 <kw>import</kw> sys, os.path, re
 
-special_symbols = list<sc>(</sc>'<sc>[</sc><sc>]</sc><sc>(</sc><sc>)</sc><sc>{</sc><sc>}</sc><sc>;</sc>'<sc>)</sc>
+special_symbols = list<sc>(</sc><sgl_quote>'<sc>[</sc><sc>]</sc><sc>(</sc><sc>)</sc><sc>{</sc><sc>}</sc><sc>;</sc>'</sgl_quote><sc>)</sc>
 
 js_reserved = <sc>[</sc>
-    "<kw>await</kw>",    "<kw>break</kw>",    "case",
-    "catch",    "<kw>class</kw>",    "const",
-    "<kw>continue</kw>", "debugger", "default",
-    "delete",   "do",       "<kw>else</kw>",
-    "enum",     "export",   "extends",
-    "false",    "<kw>finally</kw>",  "<kw>for</kw>",
-    "function", "<kw>if</kw>",       "implements",
-    "<kw>import</kw>",   "<kw>in</kw>",       "<kw>in</kw>stanceof",
-    "interface","let",      "new",
-    "null",     "package",  "private",
-    "protected","public",   "<kw>return</kw>",
-    "super",    "switch",   "static",
-    "this",     "throw",    "<kw>try</kw>",
-    "<kw>True</kw>",     "typeof",   "var",
-    "void",     "<kw>while</kw>",    "<kw>with</kw>",
-    "<kw>yield</kw>",
+    <dbl_quote>"<kw>await</kw>"</dbl_quote>,    <dbl_quote>"<kw>break</kw>"</dbl_quote>,    <dbl_quote>"case"</dbl_quote>,
+    <dbl_quote>"catch"</dbl_quote>,    <dbl_quote>"<kw>class</kw>"</dbl_quote>,    <dbl_quote>"const"</dbl_quote>,
+    <dbl_quote>"<kw>continue</kw>"</dbl_quote>, <dbl_quote>"debugger"</dbl_quote>, <dbl_quote>"default"</dbl_quote>,
+    <dbl_quote>"delete"</dbl_quote>,   <dbl_quote>"do"</dbl_quote>,       <dbl_quote>"<kw>else</kw>"</dbl_quote>,
+    <dbl_quote>"enum"</dbl_quote>,     <dbl_quote>"export"</dbl_quote>,   <dbl_quote>"extends"</dbl_quote>,
+    <dbl_quote>"false"</dbl_quote>,    <dbl_quote>"<kw>finally</kw>"</dbl_quote>,  <dbl_quote>"<kw>for</kw>"</dbl_quote>,
+    <dbl_quote>"function"</dbl_quote>, <dbl_quote>"<kw>if</kw>"</dbl_quote>,       <dbl_quote>"implements"</dbl_quote>,
+    <dbl_quote>"<kw>import</kw>"</dbl_quote>,   <dbl_quote>"<kw>in</kw>"</dbl_quote>,       <dbl_quote>"instanceof"</dbl_quote>,
+    <dbl_quote>"interface"</dbl_quote>,<dbl_quote>"let"</dbl_quote>,      <dbl_quote>"new"</dbl_quote>,
+    <dbl_quote>"null"</dbl_quote>,     <dbl_quote>"package"</dbl_quote>,  <dbl_quote>"private"</dbl_quote>,
+    <dbl_quote>"protected"</dbl_quote>,<dbl_quote>"public"</dbl_quote>,   <dbl_quote>"<kw>return</kw>"</dbl_quote>,
+    <dbl_quote>"super"</dbl_quote>,    <dbl_quote>"switch"</dbl_quote>,   <dbl_quote>"static"</dbl_quote>,
+    <dbl_quote>"this"</dbl_quote>,     <dbl_quote>"throw"</dbl_quote>,    <dbl_quote>"<kw>try</kw>"</dbl_quote>,
+    <dbl_quote>"<kw>True</kw>"</dbl_quote>,     <dbl_quote>"typeof"</dbl_quote>,   <dbl_quote>"var"</dbl_quote>,
+    <dbl_quote>"void"</dbl_quote>,     <dbl_quote>"<kw>while</kw>"</dbl_quote>,    <dbl_quote>"<kw>with</kw>"</dbl_quote>,
+    <dbl_quote>"<kw>yield</kw>"</dbl_quote>,
 <sc>]</sc>
 
 py_reserved = <sc>[</sc>
-    '<kw>False</kw>',    '<kw>None</kw>',     '<kw>True</kw>', 
-    '<kw>and</kw>',      '<kw>as</kw>',       '<kw>as</kw>sert', 
-    '<kw>async</kw>',    '<kw>await</kw>',    '<kw>break</kw>', 
-    '<kw>class</kw>',    '<kw>continue</kw>', '<kw>def</kw>', 
-    '<kw>del</kw>',      '<kw>elif</kw>',     '<kw>else</kw>', 
-    '<kw>except</kw>',   '<kw>finally</kw>',  '<kw>for</kw>', 
-    '<kw>from</kw>',     '<kw>global</kw>',   '<kw>if</kw>', 
-    '<kw>import</kw>',   '<kw>in</kw>',       '<kw>is</kw>', 
-    '<kw>lambda</kw>',   '<kw>nonlocal</kw>', '<kw>not</kw>', 
-    '<kw>or</kw>',       '<kw>pass</kw>',     '<kw>raise</kw>', 
-    '<kw>return</kw>',   '<kw>try</kw>',      '<kw>while</kw>', 
-    '<kw>with</kw>',     '<kw>yield</kw>'<sc>]</sc>
+    <sgl_quote>'<kw>False</kw>'</sgl_quote>,    <sgl_quote>'<kw>None</kw>'</sgl_quote>,     <sgl_quote>'<kw>True</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>and</kw>'</sgl_quote>,      <sgl_quote>'<kw>as</kw>'</sgl_quote>,       <sgl_quote>'<kw>assert</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>async</kw>'</sgl_quote>,    <sgl_quote>'<kw>await</kw>'</sgl_quote>,    <sgl_quote>'<kw>break</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>class</kw>'</sgl_quote>,    <sgl_quote>'<kw>continue</kw>'</sgl_quote>, <sgl_quote>'<kw>def</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>del</kw>'</sgl_quote>,      <sgl_quote>'<kw>elif</kw>'</sgl_quote>,     <sgl_quote>'<kw>else</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>except</kw>'</sgl_quote>,   <sgl_quote>'<kw>finally</kw>'</sgl_quote>,  <sgl_quote>'<kw>for</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>from</kw>'</sgl_quote>,     <sgl_quote>'<kw>global</kw>'</sgl_quote>,   <sgl_quote>'<kw>if</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>import</kw>'</sgl_quote>,   <sgl_quote>'<kw>in</kw>'</sgl_quote>,       <sgl_quote>'<kw>is</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>lambda</kw>'</sgl_quote>,   <sgl_quote>'<kw>nonlocal</kw>'</sgl_quote>, <sgl_quote>'<kw>not</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>or</kw>'</sgl_quote>,       <sgl_quote>'<kw>pass</kw>'</sgl_quote>,     <sgl_quote>'<kw>raise</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>return</kw>'</sgl_quote>,   <sgl_quote>'<kw>try</kw>'</sgl_quote>,      <sgl_quote>'<kw>while</kw>'</sgl_quote>, 
+    <sgl_quote>'<kw>with</kw>'</sgl_quote>,     <sgl_quote>'<kw>yield</kw>'</sgl_quote><sc>]</sc>
 
 
 <kw>def</kw> findWholeWord<sc>(</sc>w<sc>)</sc>:
-    <kw>return</kw> re.compile<sc>(</sc>r'\b<sc>(</sc><sc>{</sc>0<sc>}</sc><sc>)</sc>\b'.format<sc>(</sc>w<sc>)</sc><sc>)</sc>.search
+    <kw>return</kw> re.compile<sc>(</sc>r<sgl_quote>'\b<sc>{</sc>0<sc>}</sc>\b'</sgl_quote>.format<sc>(</sc>w<sc>)</sc><sc>)</sc>.search
 
-<kw>if</kw> __name__ == "__main__":
+<kw>if</kw> __name__ == <dbl_quote>"__main__"</dbl_quote>:
 
-    <kw>if</kw> os.path.exists<sc>(</sc>"./" + sys.argv<sc>[</sc>1<sc>]</sc> + "formatted.html"<sc>)</sc>:
-        os.remove<sc>(</sc>"./" + sys.argv<sc>[</sc>1<sc>]</sc> + "formatted.html"<sc>)</sc>
+    <kw>if</kw> os.path.exists<sc>(</sc><dbl_quote>"./"</dbl_quote> + sys.argv<sc>[</sc>1<sc>]</sc> + <dbl_quote>"formatted.html"</dbl_quote><sc>)</sc>:
+        os.remove<sc>(</sc><dbl_quote>"./"</dbl_quote> + sys.argv<sc>[</sc>1<sc>]</sc> + <dbl_quote>"formatted.html"</dbl_quote><sc>)</sc>
 
     js_readers = <sc>[</sc><sc>]</sc>
     html_readers = <sc>[</sc><sc>]</sc>
@@ -459,109 +463,109 @@ py_reserved = <sc>[</sc>
     txt_readers = <sc>[</sc><sc>]</sc>
     py_readers = <sc>[</sc><sc>]</sc>
 
-    <kw>for</kw> <sc>(</sc>root, subs, files<sc>)</sc> <kw>in</kw> os.walk<sc>(</sc>"./" + sys.argv<sc>[</sc>1<sc>]</sc><sc>)</sc>:
+    <kw>for</kw> <sc>(</sc>root, subs, files<sc>)</sc> <kw>in</kw> os.walk<sc>(</sc><dbl_quote>"./"</dbl_quote> + sys.argv<sc>[</sc>1<sc>]</sc><sc>)</sc>:
         <kw>for</kw> name <kw>in</kw> files:
-            <kw>if</kw> name.endswith<sc>(</sc>'.js'<sc>)</sc>:
+            <kw>if</kw> name.endswith<sc>(</sc><sgl_quote>'.js'</sgl_quote><sc>)</sc>:
                 <kw>with</kw> open<sc>(</sc>root+name<sc>)</sc> <kw>as</kw> temp:
                     js_readers.append<sc>(</sc><sc>[</sc>root+name<sc>]</sc> + temp.readlines<sc>(</sc><sc>)</sc><sc>)</sc>
-            <kw>if</kw> name.endswith<sc>(</sc>'.html'<sc>)</sc>:
+            <kw>if</kw> name.endswith<sc>(</sc><sgl_quote>'.html'</sgl_quote><sc>)</sc>:
                 <kw>with</kw> open<sc>(</sc>root+name<sc>)</sc> <kw>as</kw> temp:                
                     html_readers.append<sc>(</sc><sc>[</sc>root+name<sc>]</sc> + temp.readlines<sc>(</sc><sc>)</sc><sc>)</sc>
-            <kw>if</kw> name.endswith<sc>(</sc>'.css'<sc>)</sc>:
+            <kw>if</kw> name.endswith<sc>(</sc><sgl_quote>'.css'</sgl_quote><sc>)</sc>:
                 <kw>with</kw> open<sc>(</sc>root+name<sc>)</sc> <kw>as</kw> temp:                
                     css_readers.append<sc>(</sc><sc>[</sc>root+name<sc>]</sc> + temp.readlines<sc>(</sc><sc>)</sc><sc>)</sc>
-            <kw>if</kw> name.endswith<sc>(</sc>'.txt'<sc>)</sc>:
+            <kw>if</kw> name.endswith<sc>(</sc><sgl_quote>'.txt'</sgl_quote><sc>)</sc>:
                 <kw>with</kw> open<sc>(</sc>root+name<sc>)</sc> <kw>as</kw> temp:                
                     txt_readers.append<sc>(</sc><sc>[</sc>root+name<sc>]</sc> + temp.readlines<sc>(</sc><sc>)</sc><sc>)</sc>
-            <kw>if</kw> name.endswith<sc>(</sc>'.py'<sc>)</sc>:
+            <kw>if</kw> name.endswith<sc>(</sc><sgl_quote>'.py'</sgl_quote><sc>)</sc>:
                 <kw>with</kw> open<sc>(</sc>root+name<sc>)</sc> <kw>as</kw> temp:                
                     py_readers.append<sc>(</sc><sc>[</sc>root+name<sc>]</sc> + temp.readlines<sc>(</sc><sc>)</sc><sc>)</sc>
 
-    _tp     = open<sc>(</sc>"template.html"<sc>)</sc>
+    _tp     = open<sc>(</sc><dbl_quote>"template.html"</dbl_quote><sc>)</sc>
     template    = _tp.readlines<sc>(</sc><sc>)</sc>
-    _of     = open<sc>(</sc>"./" + sys.argv<sc>[</sc>1<sc>]</sc> + "formatted.html", "w+"<sc>)</sc>
+    _of     = open<sc>(</sc><dbl_quote>"./"</dbl_quote> + sys.argv<sc>[</sc>1<sc>]</sc> + <dbl_quote>"formatted.html"</dbl_quote>, <dbl_quote>"w+"</dbl_quote><sc>)</sc>
 
     i = 0
-    <kw>while</kw> "WRITE_HERE" <kw>not</kw> <kw>in</kw> template<sc>[</sc>i<sc>]</sc>:
+    <kw>while</kw> <dbl_quote>"WRITE_HERE"</dbl_quote> <kw>not</kw> <kw>in</kw> template<sc>[</sc>i<sc>]</sc>:
         _of.write<sc>(</sc>template<sc>[</sc>i<sc>]</sc><sc>)</sc>
         i += 1
 
     <kw>for</kw> txt <kw>in</kw> txt_readers:
-        _of.write<sc>(</sc>'&ltdiv <kw>class</kw>="bookmark"&gt' + txt<sc>[</sc>0<sc>]</sc>  +  '&lt/div&gt'<sc>)</sc>
-        _of.write<sc>(</sc>"&ltpre <kw>class</kw>=notes&gt\n"<sc>)</sc>
-        <kw>for</kw> l<kw>in</kw>e <kw>in</kw> txt<sc>[</sc>1:<sc>]</sc>:
+        _of.write<sc>(</sc><sgl_quote>'&ltdiv <kw>class</kw>=<dbl_quote>"bookmark"</dbl_quote>&gt'</sgl_quote> + txt<sc>[</sc>0<sc>]</sc>  +  <sgl_quote>'&lt/div&gt'</sgl_quote><sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&ltpre <kw>class</kw>=notes&gt\n"</dbl_quote><sc>)</sc>
+        <kw>for</kw> line <kw>in</kw> txt<sc>[</sc>1:<sc>]</sc>:
             _of.write<sc>(</sc>line<sc>)</sc>
-        _of.write<sc>(</sc>"&lt/pre&gt\n"<sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&lt/pre&gt\n"</dbl_quote><sc>)</sc>
 
     <kw>for</kw> html <kw>in</kw> html_readers:
-        _of.write<sc>(</sc>'&ltdiv <kw>class</kw>="bookmark"&gt' + html<sc>[</sc>0<sc>]</sc>  +  '&lt/div&gt'<sc>)</sc>
-        _of.write<sc>(</sc>"&ltpre <kw>class</kw>=html&gt\n"<sc>)</sc>
-        <kw>for</kw> l<kw>in</kw>e <kw>in</kw> html<sc>[</sc>1:<sc>]</sc>:  
-            r = line.replace<sc>(</sc>"&lt", "&ltkw*^+&lt"<sc>)</sc>  <comment Class="py">#  *^+ just a token <kw>for</kw></comment>
-            r = r.replace<sc>(</sc>"&gt","&gt&lt/kw&gt"<sc>)</sc>       
-            r = r.replace<sc>(</sc>"*^+", "&gt"<sc>)</sc>           <comment Class="py">#  this line to match. Weird, i know...</comment>
-            <kw>if</kw> "&ltkw&gt&lt!--" <kw>in</kw> r:
-                r = r.replace<sc>(</sc>"&ltkw&gt&lt!--", '&ltcomment <kw>class</kw>="html"&gt&lt!--'<sc>)</sc>
-                r = r.replace<sc>(</sc>"--&gt&lt/kw&gt", '--&gt&lt/comment&gt'<sc>)</sc>
+        _of.write<sc>(</sc><sgl_quote>'&ltdiv <kw>class</kw>=<dbl_quote>"bookmark"</dbl_quote>&gt'</sgl_quote> + html<sc>[</sc>0<sc>]</sc>  +  <sgl_quote>'&lt/div&gt'</sgl_quote><sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&ltpre <kw>class</kw>=html&gt\n"</dbl_quote><sc>)</sc>
+        <kw>for</kw> line <kw>in</kw> html<sc>[</sc>1:<sc>]</sc>:  
+            r = line.replace<sc>(</sc><dbl_quote>"&lt"</dbl_quote>, <dbl_quote>"&ltkw*^+&lt"</dbl_quote><sc>)</sc>  <comment Class="py">#  *^+ just a token <kw>for</kw>
+</comment>            r = r.replace<sc>(</sc><dbl_quote>"&gt"</dbl_quote>,<dbl_quote>"&gt&lt/kw&gt"</dbl_quote><sc>)</sc>       
+            r = r.replace<sc>(</sc><dbl_quote>"*^+"</dbl_quote>, <dbl_quote>"&gt"</dbl_quote><sc>)</sc>           <comment Class="py">#  this line to match. Weird, i know...
+</comment>            <kw>if</kw> <dbl_quote>"&ltkw&gt&lt!--"</dbl_quote> <kw>in</kw> r:
+                r = r.replace<sc>(</sc><dbl_quote>"&ltkw&gt&lt!--"</dbl_quote>, <sgl_quote>'&ltcomment <kw>class</kw>=<dbl_quote>"html"</dbl_quote>&gt&lt!--'</sgl_quote><sc>)</sc>
+                r = r.replace<sc>(</sc><dbl_quote>"--&gt&lt/kw&gt"</dbl_quote>, <sgl_quote>'--&gt&lt/comment&gt'</sgl_quote><sc>)</sc>
             _of.write<sc>(</sc>r<sc>)</sc>
-        _of.write<sc>(</sc>"&lt/pre&gt\n"<sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&lt/pre&gt\n"</dbl_quote><sc>)</sc>
 
     <kw>for</kw> css <kw>in</kw> css_readers:
-        _of.write<sc>(</sc>'&ltdiv <kw>class</kw>="bookmark"&gt' + css<sc>[</sc>0<sc>]</sc>  +  '&lt/div&gt'<sc>)</sc>
-        _of.write<sc>(</sc>"&ltpre <kw>class</kw>=css&gt\n"<sc>)</sc>
-        <kw>for</kw> l<kw>in</kw>e <kw>in</kw> css<sc>[</sc>1:<sc>]</sc>:
+        _of.write<sc>(</sc><sgl_quote>'&ltdiv <kw>class</kw>=<dbl_quote>"bookmark"</dbl_quote>&gt'</sgl_quote> + css<sc>[</sc>0<sc>]</sc>  +  <sgl_quote>'&lt/div&gt'</sgl_quote><sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&ltpre <kw>class</kw>=css&gt\n"</dbl_quote><sc>)</sc>
+        <kw>for</kw> line <kw>in</kw> css<sc>[</sc>1:<sc>]</sc>:
             r = line
-            <kw>if</kw> "<sc>{</sc>" <kw>in</kw> l<kw>in</kw>e:
-                r = "&ltsc&gt"
-                r = r + line.replace<sc>(</sc>"<sc>{</sc>", "<sc>{</sc>&lt/sc&gt"<sc>)</sc>
-            <kw>elif</kw> "<sc>}</sc>" <kw>in</kw> l<kw>in</kw>e:
-                r = line.replace<sc>(</sc>"<sc>}</sc>", "&ltsc&gt<sc>}</sc>&lt/sc&gt"<sc>)</sc>
+            <kw>if</kw> <dbl_quote>"<sc>{</sc>"</dbl_quote> <kw>in</kw> line:
+                r = <dbl_quote>"&ltsc&gt"</dbl_quote>
+                r = r + line.replace<sc>(</sc><dbl_quote>"<sc>{</sc>"</dbl_quote>, <dbl_quote>"<sc>{</sc>&lt/sc&gt"</dbl_quote><sc>)</sc>
+            <kw>elif</kw> <dbl_quote>"<sc>}</sc>"</dbl_quote> <kw>in</kw> line:
+                r = line.replace<sc>(</sc><dbl_quote>"<sc>}</sc>"</dbl_quote>, <dbl_quote>"&ltsc&gt<sc>}</sc>&lt/sc&gt"</dbl_quote><sc>)</sc>
             <kw>else</kw>:
-                r = "&ltcss&gt" + r<sc>[</sc>:-1<sc>]</sc> + "&lt/css&gt\n"
+                r = <dbl_quote>"&ltcss&gt"</dbl_quote> + r<sc>[</sc>:-1<sc>]</sc> + <dbl_quote>"&lt/css&gt\n"</dbl_quote>
 
-            <kw>if</kw> "/*" <kw>in</kw> r:
-                r = r.replace<sc>(</sc>'/*', '&ltcomment <kw>class</kw>="css"&gt/*'<sc>)</sc>
-                r = r.replace<sc>(</sc>'*/', '*/&lt/comment&gt'<sc>)</sc>
+            <kw>if</kw> <dbl_quote>"/*"</dbl_quote> <kw>in</kw> r:
+                r = r.replace<sc>(</sc><sgl_quote>'/*'</sgl_quote>, <sgl_quote>'&ltcomment <kw>class</kw>=<dbl_quote>"css"</dbl_quote>&gt/*'</sgl_quote><sc>)</sc>
+                r = r.replace<sc>(</sc><sgl_quote>'*/'</sgl_quote>, <sgl_quote>'*/&lt/comment&gt'</sgl_quote><sc>)</sc>
 
             _of.write<sc>(</sc>r<sc>)</sc>
-        _of.write<sc>(</sc>"&lt/pre&gt\n"<sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&lt/pre&gt\n"</dbl_quote><sc>)</sc>
 
     <kw>for</kw> js <kw>in</kw> js_readers:
-        _of.write<sc>(</sc>'&ltdiv <kw>class</kw>="bookmark"&gt' + js<sc>[</sc>0<sc>]</sc>  +  '&lt/div&gt'<sc>)</sc>
-        _of.write<sc>(</sc>"&ltpre <kw>class</kw>=js&gt\n"<sc>)</sc>
-        <kw>for</kw> l<kw>in</kw>e <kw>in</kw> js<sc>[</sc>1:<sc>]</sc>:
+        _of.write<sc>(</sc><sgl_quote>'&ltdiv <kw>class</kw>=<dbl_quote>"bookmark"</dbl_quote>&gt'</sgl_quote> + js<sc>[</sc>0<sc>]</sc>  +  <sgl_quote>'&lt/div&gt'</sgl_quote><sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&ltpre <kw>class</kw>=js&gt\n"</dbl_quote><sc>)</sc>
+        <kw>for</kw> line <kw>in</kw> js<sc>[</sc>1:<sc>]</sc>:
             <kw>for</kw> word <kw>in</kw> js_reserved:
                 <kw>if</kw> findWholeWord<sc>(</sc>word<sc>)</sc><sc>(</sc>line<sc>)</sc>:
-                    line = line.replace<sc>(</sc>word, "&ltkw&gt" + word + "&lt/kw&gt"<sc>)</sc>
+                    line = line.replace<sc>(</sc>word, <dbl_quote>"&ltkw&gt"</dbl_quote> + word + <dbl_quote>"&lt/kw&gt"</dbl_quote><sc>)</sc>
             <kw>for</kw> sym <kw>in</kw> special_symbols:
-                <kw>if</kw> sym <kw>in</kw> l<kw>in</kw>e:
-                    line = line.replace<sc>(</sc>sym, "&ltsc&gt" + sym + "&lt/sc&gt"<sc>)</sc>
-            <kw>if</kw> "//" <kw>in</kw> l<kw>in</kw>e:
-                line = line.replace<sc>(</sc>'//', '&ltcomment <kw>class</kw>="js"&gt//', 1<sc>)</sc>
-                line = line<sc>[</sc>:-1<sc>]</sc> + "&lt/comment&gt\n"
-            line = line.replace<sc>(</sc>'/*', '&ltcomment <kw>class</kw>="js"&gt/*'<sc>)</sc>
-            line = line.replace<sc>(</sc>'*/', '*/&lt/comment&gt'<sc>)</sc>
+                <kw>if</kw> sym <kw>in</kw> line:
+                    line = line.replace<sc>(</sc>sym, <dbl_quote>"&ltsc&gt"</dbl_quote> + sym + <dbl_quote>"&lt/sc&gt"</dbl_quote><sc>)</sc>
+            <kw>if</kw> <dbl_quote>"//"</dbl_quote> <kw>in</kw> line:
+                line = line.replace<sc>(</sc><sgl_quote>'//'</sgl_quote>, <sgl_quote>'&ltcomment <kw>class</kw>=<dbl_quote>"js"</dbl_quote>&gt//'</sgl_quote>, 1<sc>)</sc>
+                line = line<sc>[</sc>:-1<sc>]</sc> + <dbl_quote>"&lt/comment&gt\n"</dbl_quote>
+            line = line.replace<sc>(</sc><sgl_quote>'/*'</sgl_quote>, <sgl_quote>'&ltcomment <kw>class</kw>=<dbl_quote>"js"</dbl_quote>&gt/*'</sgl_quote><sc>)</sc>
+            line = line.replace<sc>(</sc><sgl_quote>'*/'</sgl_quote>, <sgl_quote>'*/&lt/comment&gt'</sgl_quote><sc>)</sc>
                 
             _of.write<sc>(</sc>line<sc>)</sc>
-        _of.write<sc>(</sc>"&lt/pre&gt\n"<sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&lt/pre&gt\n"</dbl_quote><sc>)</sc>
 
     <kw>for</kw> py <kw>in</kw> py_readers:
-        _of.write<sc>(</sc>'&ltdiv <kw>class</kw>="bookmark"&gt' + py<sc>[</sc>0<sc>]</sc> + '&lt/div&gt'<sc>)</sc>
-        _of.write<sc>(</sc>"&ltpre <kw>class</kw>=py&gt\n"<sc>)</sc>
-        <kw>for</kw> l<kw>in</kw>e <kw>in</kw> py<sc>[</sc>1:<sc>]</sc>:
-            line = line.replace<sc>(</sc>"&lt", "&lt"<sc>)</sc>
-            line = line.replace<sc>(</sc>"&gt", "&gt"<sc>)</sc>
+        _of.write<sc>(</sc><sgl_quote>'&ltdiv <kw>class</kw>=<dbl_quote>"bookmark"</dbl_quote>&gt'</sgl_quote> + py<sc>[</sc>0<sc>]</sc> + <sgl_quote>'&lt/div&gt'</sgl_quote><sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&ltpre <kw>class</kw>=py&gt\n"</dbl_quote><sc>)</sc>
+        <kw>for</kw> line <kw>in</kw> py<sc>[</sc>1:<sc>]</sc>:
+            line = line.replace<sc>(</sc><dbl_quote>"&lt"</dbl_quote>, <dbl_quote>"&lt"</dbl_quote><sc>)</sc>
+            line = line.replace<sc>(</sc><dbl_quote>"&gt"</dbl_quote>, <dbl_quote>"&gt"</dbl_quote><sc>)</sc>
             <kw>for</kw> word <kw>in</kw> py_reserved:
                 <kw>if</kw> findWholeWord<sc>(</sc>word<sc>)</sc><sc>(</sc>line<sc>)</sc>:
-                    line = line.replace<sc>(</sc>word, "&ltkw&gt" + word + "&lt/kw&gt"<sc>)</sc>
+                    line = line.replace<sc>(</sc>word, <dbl_quote>"&ltkw&gt"</dbl_quote> + word + <dbl_quote>"&lt/kw&gt"</dbl_quote><sc>)</sc>
             <kw>for</kw> sym <kw>in</kw> special_symbols:
-                <kw>if</kw> sym <kw>in</kw> l<kw>in</kw>e:
-                    line = line.replace<sc>(</sc>sym, "&ltsc&gt" + sym + "&lt/sc&gt"<sc>)</sc>
-            <kw>if</kw> "<comment Class="py">#" <kw>in</kw> l<kw>in</kw>e:</comment>
-                line = line.replace<sc>(</sc>'<comment Class="py">#', '&ltcomment Class="py"&gt#', 1<sc>)</sc></comment>
-                line = line<sc>[</sc>:-1<sc>]</sc> + "&lt/comment&gt\n"
+                <kw>if</kw> sym <kw>in</kw> line:
+                    line = line.replace<sc>(</sc>sym, <dbl_quote>"&ltsc&gt"</dbl_quote> + sym + <dbl_quote>"&lt/sc&gt"</dbl_quote><sc>)</sc>
+            <kw>if</kw> <dbl_quote>"#"</dbl_quote> <kw>in</kw> line:
+                line = line.replace<sc>(</sc><sgl_quote>'#'</sgl_quote>, <sgl_quote>'&ltcomment Class=<dbl_quote>"py"</dbl_quote>&gt#'</sgl_quote>, 1<sc>)</sc>
+                line = line<sc>[</sc>:-1<sc>]</sc> + <dbl_quote>"&lt/comment&gt\n"</dbl_quote>
             _of.write<sc>(</sc>line<sc>)</sc>
-        _of.write<sc>(</sc>"&lt/pre&gt\n"<sc>)</sc>
+        _of.write<sc>(</sc><dbl_quote>"&lt/pre&gt\n"</dbl_quote><sc>)</sc>
 
 
     i += 1

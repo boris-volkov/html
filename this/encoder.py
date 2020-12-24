@@ -1,11 +1,4 @@
-# TODO correct the bahavior of the regular expressions stuff
-# if it finds a keyword in a line, it marks all instances
-# of that keyword, including ones nested in other words. 
-# need to figure out how to focus on only the isolated keywords.
-
 import sys, os.path, re
-
-import time
 
 special_symbols = list('[](){};')
 
@@ -40,32 +33,11 @@ py_reserved = [
     'lambda',   'nonlocal', 'not', 
     'or',       'pass',     'raise', 
     'return',   'try',      'while', 
-    'with',     'yield'
-]
-
-c_reserved = [
-    'auto',     'break',    'case',
-    'char',     'const',    'continue',
-    'default',  'do',       'double',
-    'else',     'enum',     'extern',   
-    'float',    'for',      'goto',
-    'if',       'inline',   'int',
-    'long',     'register', 'restrict',
-    'return',   'short',    'signed',
-    'sizeof',   'static',   'struct',
-    'switch',   'typedef',  'union',
-    'unsigned', 'void',     'volatile',
-    'while',    '_Alingas', '_Alignof',
-    '_Atomic',  '_Bool',    '_Complex',
-    '_Decimal128',          '_Decimal32',
-    '_Decimal64',           '_Generic',
-    '_Imaginary',           '_Noreturn',
-    '_Static_assert',       '_Thread_local',
-]
+    'with',     'yield']
 
 
 def findWholeWord(w):
-    return re.compile(r'\b({0})\b'.format(w)).search
+    return re.compile(r'\b{0}\b'.format(w)).search
 
 if __name__ == "__main__":
 
@@ -116,7 +88,7 @@ if __name__ == "__main__":
         _of.write('<div class="bookmark">' + html[0]  +  '</div>')
         _of.write("<pre class=html>\n")
         for line in html[1:]:  
-            r = line.replace("<", "<kw*^+&lt")  #  *^+ is just a token for 
+            r = line.replace("<", "<kw*^+&lt")  #  *^+ just a token for
             r = r.replace(">","&gt</kw>")       
             r = r.replace("*^+", ">")           #  this line to match. Weird, i know...
             if "<kw>&lt!--" in r:
@@ -164,49 +136,21 @@ if __name__ == "__main__":
             _of.write(line)
         _of.write("</pre>\n")
 
-    
     for py in py_readers:
-        dbl_quote = 0
-        sgl_quote = 0
         _of.write('<div class="bookmark">' + py[0] + '</div>')
         _of.write("<pre class=py>\n")
         for line in py[1:]:
             line = line.replace("<", "&lt")
             line = line.replace(">", "&gt")
             for word in py_reserved:
-                start = 0
-                while x := findWholeWord(word)(line, start):
-                    print('found', word, 'in', line)
-                    line = line[:x.start()] + '<kw>' + word + '</kw>' + line[x.end():]
-                    start = x.end() + len('<kw></kw>')
+                if findWholeWord(word)(line):
+                    line = line.replace(word, "<kw>" + word + "</kw>")
             for sym in special_symbols:
                 if sym in line:
                     line = line.replace(sym, "<sc>" + sym + "</sc>")
-            j = 0
-            temp = list(line)
-            while j < len(temp):
-                if temp[j] == '#' and dbl_quote == 0 and sgl_quote ==0:
-                    temp[j] = '<comment Class="py">#'
-                    temp.append('</comment>')
-                    break
-                if temp[j] == '"':
-                    if dbl_quote == 0:
-                        temp.insert(j, '<dbl_quote>')
-                        dbl_quote = 1
-                    else:
-                        temp.insert(j + 1, '</dbl_quote>')
-                        dbl_quote = 0
-                    j += 2
-                elif temp[j] == "'":
-                    if sgl_quote ==0:
-                        temp.insert(j, '<sgl_quote>')
-                        sgl_quote = 1
-                    else:
-                        temp.insert(j + 1, '</sgl_quote>')
-                        sgl_quote = 0
-                    j += 2
-                j += 1
-            line = ''.join(temp)
+            if "#" in line:
+                line = line.replace('#', '<comment Class="py">#', 1)
+                line = line[:-1] + "</comment>\n"
             _of.write(line)
         _of.write("</pre>\n")
 
