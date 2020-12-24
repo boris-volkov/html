@@ -1,39 +1,46 @@
+
 * {
-	font-family: Courier;
-	font-weight: 700;
-	background-color: #333942;
-	box-sizing: border-box;
+	color: coral;
+	font-family : Courier;
+	font-weight : 700;
+	box-sizing : border-box; /* to correct sizes */
+}
+
+body {
+	background-color : #333942;
+}
+
+a {
+	text-decoration: none;
 }
 
 .top_menu {
-	position:sticky;
+	position : sticky; 		/* stick to top of screen */
 	top : 0;
-	width: 95vw;
-	list-style:none;
+	width : 95vw;
+	list-style: none;
 	border-radius:10px;
 	border-bottom-left-radius: 30px;
 	padding: 0;
 	margin: auto;
-	overflow: auto;
+	overflow: auto;			/* to keep its form */
 }
 		
 .top_menu li {
 	text-align:center;
 	float: left; 
 	width: 20%;
-	/*font-size: 18px;*/
 }
 
 .top_menu li a {
 	background-color: #445;
 	color: coral;
 	text-decoration: none;
-	display: block;
+	display: block;  		/* to take up full space */
 	padding: 15px 20px;
 }
 
 .top_menu li a:hover {
-	color: coral;
 	background: #358;
 }
 
@@ -43,37 +50,34 @@ img.screenshot {
 	object-fit: contain;
 	margin-left:auto;
 	margin-right:auto;
-	display: block;
+	display: block;			/* to be able to center it */
 }
 
 div, pre {
 	margin: auto;
 	padding: 10px;
 	padding-left: 40px;
-	overflow: hide;
-	width: 90vw;
-	direction:ltr;
+	width: 90vw;   			/* 90% of viewport width */
 	border-radius: 16px;
 	border-top-left-radius: 40px;
-	tab-size: 4;
+	tab-size: 4;			/* otherwise its 8 spaces*/
 	-moz-tab-size: 4;
 }
 
 pre, a {
-	white-space: pre-wrap;
-	word-break: keep-all
+	white-space: pre-wrap;  /* to wrap text */
+	word-break: keep-all	/* so words don't get broken in wrap */
 }
 
 div {
 	padding: 30px;
 }
 
-div.bookmark {
+div.bookmark { 				/* the little tab above all the boxes */
 	text-align: center;
 	padding: 5px;
 	width: 36vw;
 	background-color : #345;
-	color: coral;
 	margin-bottom : 0;
 	border-radius: 0;
 	margin-top: 70px;
@@ -81,101 +85,28 @@ div.bookmark {
 	border-top-left-radius : 30px;
 }
 
-
 div.image {
 	background-color: #011;
 }
 
-pre.html {
-	background-color: #375;
-	color: #000;
-}
-
-pre.notes {
-	background-color: #357;
-	color: white;
-}
-
-pre.css {
-	background-color: #366;
-	color: #eee;	
-}
-
-pre.python {
-	background-color: #369;
-	color: #000;
-}
-
-pre.js {
-	background-color: rgb(140,110,110);
-	color: #210;
-}
-
-
-y {
-	background-color: inherit;
-	color: yellow;
-}
-
-bl {
-	background-color: inherit;
-	color: #3ff;
-}
-
-gr {
-	background-color: inherit;
-	color: #142;
-	font-weight: 900;
-}
-
-db {
-	background-color: inherit;
-	color: #246;
-}
-
-css {
-	background-color: inherit;
-	color: white;
-}
-
-css_comm {
-	background-color: inherit;
-	color: #f64;;
-}
-
-html_comm {
-	background-color: inherit;
-	color: #242;
-}
-
-jack {
-	height: 80px;
-	padding-top 10px;
-	visibility:hidden;
-}
-
 .link_box {
 	background: #345;
-	margin: 0 auto 30px;
+	margin: 0 auto 30px; 	/* top sides bottom */
 }
 
 .link_box a {
-	display:block;
+	display:block;			/* to take up full row */
 	background: #456;
 	padding: 10px;
 	padding-left: 30px;
 	margin: 5px;
-	font-size: 100%;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
-	color: coral;
-	text-decoration: none;
 }
 
 .link_box a:hover {
 	background: #358;
 }
-
 
 .image_box {
 	background: #345;
@@ -184,17 +115,13 @@ jack {
 	justify-content: space-between;
 }
 
-
 .image_box a {
 	background: #456;
 	max-width: 30%;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
-	text-decoration: none;
 	padding: 20px;
 	margin: 10px;
-	color: coral;
-	text-decoration: none;
 	display: flex;
 	flex-direction : column;
 	align-content : center;
@@ -219,3 +146,120 @@ jack {
 	margin-right: auto;
 	border: 2px coral solid;
 }
+
+pre.notes {
+	background-color: #357;
+	color: white;
+}
+
+
+
+
+pre.html {
+	background-color: #375;
+	color: #000;
+}
+
+.html kw {
+	color: yellow;
+}
+
+.html sc {
+	color: yellow;
+}
+
+
+
+
+
+pre.css {
+	background-color: #366;
+	color: #eee;	
+}
+
+.css sc {
+	color : #3ff;
+}
+
+
+
+pre.py {
+	background-color: #369;
+	color: #000;
+}
+
+.py sc {
+	color: #bb2;
+}
+
+.py kw {
+	color: coral;
+}
+
+
+
+pre.js {
+	background-color: rgb(140,110,110);
+	color: #210;
+}
+
+.js sc {
+	color: #246;
+}
+
+.js kw {
+	color: #142;
+}
+
+
+
+sc, kw { /* special characters and key words */
+	background-color:inherit;
+}
+
+
+
+comment {
+	background-color: inherit;
+}
+
+
+css {
+	background-color: inherit;
+	color: white;
+}
+
+
+string {
+	background-color: inherit;
+	color: pink;
+}
+
+comment.css {
+	color: #f64;
+}
+
+comment.js {
+	color: #532;
+}
+
+comment.html {
+	color: #242;
+}
+
+comment.py {
+	color: #142;
+}
+
+
+comment sc, comment kw { /* comment overrides special symbols */
+	color: inherit!important;
+}
+
+wedge { /*for correct spacing when linking within page */
+	height: 80px;
+	padding-top 10px;
+	visibility:hidden;
+}
+
+
