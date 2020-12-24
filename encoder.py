@@ -3,24 +3,12 @@ import sys, os.path, re
 special_symbols = list('[](){};')
 
 js_reserved = [
-    "await",
-    "break",
-    "case",
-    "catch",
-    "class",
-    "const",
-    "continue",
-    "debugger",
-    "default",
-    "delete",
-    "do",
-    "else",
-    "enum",
-    "export",
-    "extends",
-    "false",
-    "finally",
-    "for",
+    "await",    "break",    "case",
+    "catch",    "class",    "const",
+    "continue", "debugger", "default",
+    "delete",   "do",       "else",
+    "enum",     "export",   "extends",
+    "false",    "finally",  "for",
     "function",
     "if",
     "implements",
@@ -134,7 +122,7 @@ if __name__ == "__main__":
         for line in js[1:]:
             for word in js_reserved:
                 if findWholeWord(word)(line):
-                    line = line.replace(word, "<y>" + word + "</y>")
+                    line = line.replace(word, "<gr>" + word + "</gr>")
             for sym in special_symbols:
                 if sym in line:
                     line = line.replace(sym, "<db>" + sym + "</db>")

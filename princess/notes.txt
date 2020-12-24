@@ -1,0 +1,4 @@
+Here is a program to present a puzzle from one of Raymond Smullyan's books.
+It's a pretty challenging puzzle, and can actually teach a lot about programming.
+
+more to come soon...

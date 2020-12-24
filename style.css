@@ -59,7 +59,7 @@ div, pre {
 	-moz-tab-size: 4;
 }
 
-pre {
+pre, a {
 	white-space: pre-wrap;
 	word-break: keep-all
 }
@@ -122,6 +122,12 @@ bl {
 	color: #3ff;
 }
 
+gr {
+	background-color: inherit;
+	color: #142;
+	font-weight: 900;
+}
+
 db {
 	background-color: inherit;
 	color: #246;
@@ -180,21 +186,36 @@ jack {
 
 
 .image_box a {
-	background: #345;
+	background: #456;
 	max-width: 30%;
-	margin: 0;
-	padding: 0;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	text-decoration: none;
+	padding: 20px;
+	margin: 10px;
+	color: coral;
+	text-decoration: none;
+	display: flex;
+	flex-direction : column;
+	align-content : center;
+	justify-content: center;
 }
 
-.image_box img:hover {
-	border: 2px coral solid;
+.image_box a p {
+	background: inherit;
+	text-align: center;
+
 }
 
+.image_box a:hover {
+	background: #358;
+}
 
 .image_box img {
-	border: 2px #345 solid;
-	max-width: 100%;
-	flex-direction: row;
+	max-width: 90%;
 	object-fit: cover;
-	padding:0;
+	padding:0px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px coral solid;
 }
