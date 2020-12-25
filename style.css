@@ -1,9 +1,9 @@
-
 * {
 	color: coral;
 	font-family : Courier;
 	font-weight : 600;
 	box-sizing : border-box; /* to correct sizes */
+	cursor: default;
 }
 
 body {
@@ -18,29 +18,32 @@ a {
 	position : sticky; 		/* stick to top of screen */
 	top : 0;
 	width : 95vw;
-	list-style: none;
 	border-radius:10px;
-	border-bottom-left-radius: 30px;
 	padding: 0;
 	margin: auto;
-	overflow: auto;			/* to keep its form */
-}
-		
-.top_menu li {
-	text-align:center;
-	float: left; 
-	width: 20%;
+	display: flex;
+	flex-wrap: wrap-reverse;
+	align-content : stretch;
 }
 
-.top_menu li a {
+.top_menu a {
+	text-align : center;
 	background-color: #445;
+	flex : 1;
 	color: coral;
 	text-decoration: none;
-	display: block;  		/* to take up full space */
 	padding: 15px 20px;
 }
 
-.top_menu li a:hover {
+.top_menu a.first {
+	border-bottom-left-radius: 30px;
+}
+
+.top_menu a.last {
+	border-bottom-right-radius: 30px;
+}
+
+.top_menu a:hover {
 	background: #358;
 }
 
@@ -69,7 +72,7 @@ div, pre {
 	-moz-tab-size: 4;
 }
 
-pre, a {
+pre {
 	white-space: pre-wrap;  /* to wrap text */
 	word-break: break-all;	/* so words don't get broken in wrap */
 }
