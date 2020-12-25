@@ -15,6 +15,7 @@ a {
 }
 
 .top_menu {
+	background-color: #445;
 	position : sticky; 		/* stick to top of screen */
 	top : 0;
 	width : 95vw;
@@ -24,6 +25,8 @@ a {
 	display: flex;
 	flex-wrap: wrap-reverse;
 	align-content : stretch;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
 }
 
 .top_menu a {
